@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Вердикт</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; max-width: 900px; }
+      label { display: block; margin: 10px 0 4px; font-weight: 600; }
+      select, input { width: 100%; padding: 10px; }
+      button { padding: 10px 14px; margin-top: 14px; cursor: pointer; }
+      pre { background: #f4f4f4; padding: 12px; overflow: auto; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <h1>Вердикт</h1>
+    <p>Заполни форму, нажми "Оценить". Доступ защищен Basic Auth.</p>
+
+    <div class="row">
+      <div>
+        <label>Концепт</label>
+        <select id="concept">
+          <option value="no">Нет</option>
+          <option value="weak">Недокачен</option>
+          <option value="yes">Есть</option>
+        </select>
+
+        <label>Релизный план</label>
+        <select id="release_plan">
+          <option value="no">Нет</option>
+          <option value="draft">Черновик</option>
+          <option value="yes">Есть</option>
+        </select>
+
+        <label>Рекламный рейтинг (0-10)</label>
+        <input id="promo_rating_0_10" type="number" min="0" max="10" step="1" value="5" />
+
+        <label>Активность в соцсетях</label>
+        <select id="social_activity">
+          <option value="inactive">Не активен</option>
+          <option value="low">Недостаточно</option>
+          <option value="good">Хорошо</option>
+        </select>
+
+        <label>Выступлений за 12 месяцев</label>
+        <input id="gigs_last_12m" type="number" min="0" step="1" value="0" />
+      </div>
+
+      <div>
+        <label>Готовых треков на 12 месяцев</label>
+        <input id="ready_tracks_next_12m" type="number" min="0" step="1" value="5" />
+
+        <label>Бэк-каталог</label>
+        <select id="back_catalog">
+          <option value="none">Нет</option>
+          <option value="10_tracks_or_more">10 треков или больше</option>
+          <option value="10_releases_or_more">10 релизов или больше</option>
+        </select>
+
+        <label>Команда</label>
+        <select id="team">
+          <option value="none">Нет</option>
+          <option value="partial">Частично</option>
+          <option value="full">Полная</option>
+        </select>
+
+        <label>Автономность производства</label>
+        <select id="production_autonomy">
+          <option value="does_not_write">Не пишет</option>
+          <option value="external_needed">Нужны подрядчики</option>
+          <option value="self_produces">Производит сам</option>
+        </select>
+
+        <label>Потенциал worldwide</label>
+        <select id="worldwide_potential">
+          <option value="no">Нет</option>
+          <option value="yes">Есть</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="btn">Оценить</button>
+
+    <h2>Результат</h2>
+    <pre id="out">{}</pre>
+
+    <h2>История (последние 20)</h2>
+    <button id="historyBtn">Обновить историю</button>
+    <pre id="historyOut">[]</pre>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
